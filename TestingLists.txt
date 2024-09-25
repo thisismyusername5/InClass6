@@ -1,0 +1,19 @@
+input_user_list = [("E1221377", "Gregory", "Cook"),
+                   ("S15819XX", "Matthew", "Ward"),
+                   ("S13680XX", "Ian", "Edwards"),
+                   ("S13009XX", "Quinn", "Bailey"),
+                   ("S15130XX", "Autumn", "Miller"),
+                   ("S15081XX", "Luke", "Harris"),
+                   ("S14982XX", "Victoria", "Young"),
+                   ("S14212XX", "Mila", "Smith"),
+                   ("S14678XX", "Samual", "Brooks")]
+
+input_equip_list= [('91a7a7c7-56fd-4a28-a953-fd83c759f2ab','PC','Dell Optiplex 7060','Microsoft Windows 10 Pro','BR CC 201'),
+                   ('bb33cf03-0721-4adf-93ba-d5474921bcd3','PC','Dell Optiplex 7060','Microsoft Windows 10 Pro','BR CC 201'),
+                   ('0e93ca48-8308-421d-907e-c7c861014b93','PC','Dell Optiplex 7060','Microsoft Windows 10 Pro','BR CC 201'),
+                   ('dc897b52-9823-4326-8f46-1a5597e80db6','PC','Dell Optiplex 7060','Microsoft Windows 10 Pro','BR CC 201'),
+                   ('9f4b171c-69b1-4b99-b997-1f2a7049ae27','PC','Dell Optiplex 7060','Microsoft Windows 10 Pro','BR CC 201'),
+                   ('6d209e02-1896-497b-b490-c2eb096d4b4f','Switch','Netgear GS308','BR Comp Room'),
+                   ('d6d38b1d-61a2-42aa-b4e7-be541b073d1c','Switch','Tanda GS305','BR Comp Room'),
+                   ('73bd442b-ccb2-4646-8500-29acaab88866','Server','Dell PowerEdge R250','Red Hat Linux 9.3','BR CC209'),
+                   ('9ed5af33-4ea0-4c76-ae02-8d4988b6c857','Server','Dell PowerEdge R250','Red Hat Linux 9.3','BR CC209')]
