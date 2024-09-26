@@ -66,7 +66,15 @@ class Equipment():
     There is a class attribute:
         count : the number of instances of the Equipment class
     """
-    
+    def __init__(self, uuid, category, device, location, value):
+        self.uuid = uuid
+        self.category = category
+        self.device = device
+        self.location = location
+        self.value = value
+
+        Equipment.count += 1
+
     count = 0
     
     def __init__(self, uuid, category, device, location, value = 0.0):
