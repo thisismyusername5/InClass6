@@ -66,21 +66,13 @@ class Equipment():
     There is a class attribute:
         count : the number of instances of the Equipment class
     """
-    def __init__(self, uuid, category, device, location, value):
-        self.uuid = uuid
-        self.category = category
-        self.device = device
-        self.location = location
-        self.value = value
-
-        Equipment.count += 1
 
     count = 0
     
     def __init__(self, uuid, category, device, location, value = 0.0):
         # Write the script to instantiate the class.  
         # Set the public class attributes with the values passed
-        self.uuid =  uuid
+        self.uuid = uuid
         self.category = category
         self.device = device
         self.location = location
@@ -118,21 +110,24 @@ class Computer(Equipment):
      There is a class attribute:
          count : the number of instances of the Equipment class    
     """
-    ## count = ??
+    count = 0
     
     def __init__(self, uuid, category, device, location, value = 0.0):
         # Write the script to instantiate the class.  
+        
         # Since the value passed in are inherited from the Equipment class you
         # should call the parent __init__ funtion
+        super().__init__(uuid, category, device, location, value)
         # Set the public os attribute to ""
+        self.os = ""
         # Don't forget to update the class variable keeping track of the number
         # of instances.
-        pass
+        Computer.count += 1
         
         def __str__(self):
             # Override the default __str__() function.  You should return a string
             # formatted as: "uuid, category, device, os, location, value"
-            pass
+            return f"{self.uuid}, {self.category}, {self.device}, {self.os}, {self.location}, {self.value}"
 
 def print_user_list(user_list):
     """
@@ -204,27 +199,41 @@ if __name__ == "__main__":
 
         
     # populate the equipment_list and computer_list here
+    input_equip_list= [('91a7a7c7-56fd-4a28-a953-fd83c759f2ab','PC','Dell Optiplex 7060','Microsoft Windows 10 Pro','BR CC 201'),
+                   ('bb33cf03-0721-4adf-93ba-d5474921bcd3','PC','Dell Optiplex 7060','Microsoft Windows 10 Pro','BR CC 201'),
+                   ('0e93ca48-8308-421d-907e-c7c861014b93','PC','Dell Optiplex 7060','Microsoft Windows 10 Pro','BR CC 201'),
+                   ('dc897b52-9823-4326-8f46-1a5597e80db6','PC','Dell Optiplex 7060','Microsoft Windows 10 Pro','BR CC 201'),
+                   ('9f4b171c-69b1-4b99-b997-1f2a7049ae27','PC','Dell Optiplex 7060','Microsoft Windows 10 Pro','BR CC 201'),
+                   ('6d209e02-1896-497b-b490-c2eb096d4b4f','Switch','Netgear GS308','BR Comp Room'),
+                   ('d6d38b1d-61a2-42aa-b4e7-be541b073d1c','Switch','Tanda GS305','BR Comp Room'),
+                   ('73bd442b-ccb2-4646-8500-29acaab88866','Server','Dell PowerEdge R250','Red Hat Linux 9.3','BR CC209'),
+                   ('9ed5af33-4ea0-4c76-ae02-8d4988b6c857','Server','Dell PowerEdge R250','Red Hat Linux 9.3','BR CC209')]
     
     #if you use a list of equipment and computers, process the list here:
-    # for eq in input_equip_list:
+    for eq in input_equip_list:
     #      Extract the appropriate pieces that are in the same place in the input
     #      list reqgardless of whether they are a computer or not
-        # uuid = ??
-        # cat = ??
-        # dev = ??
-        # val = 0.0
+        try:
+            uuid, cat, dev, loc, val = eq
+        except ValueError:
+            uuid, cat, dev, loc = eq
+            val = 0.0
+        uuid = eq[0]
+        cat = eq[1]
+        dev = eq[2]
+        val = 0.0
         # Then determine the class you will use and which list you will add
         # the instance to:
-        # if cat == "PC" or cat == "Server":
-        #    os = ??
-        #    loc = ??
-        #    this = Computer(uuid, cat, dev, loc, val)
-        #    this.os = os
-        #    computer_list.append(this)
-        # else:
-        #    loc = ??
-        #    this = Equipment(uuid, cat, dev, loc, val)
-        #    equipment_list.append((this))
+        if cat == "PC" or cat == "Server":
+            os = eq[3]
+            loc = eq[4]
+            this = Computer(uuid, cat, dev, loc, val)
+            this.os = os
+            computer_list.append(this)
+        else:
+            loc = eq[3]
+            this = Equipment(uuid, cat, dev, loc, val)
+            equipment_list.append((this))
 
         
     # report each list
@@ -235,4 +244,4 @@ if __name__ == "__main__":
     # print out the counts form the class
     print(User.count)
     print(Equipment.count)
-#    print(Computer.count)
+    print(Computer.count)
