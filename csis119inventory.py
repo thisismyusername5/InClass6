@@ -114,7 +114,6 @@ class Computer(Equipment):
     
     def __init__(self, uuid, category, device, location, value = 0.0):
         # Write the script to instantiate the class.  
-        
         # Since the value passed in are inherited from the Equipment class you
         # should call the parent __init__ funtion
         super().__init__(uuid, category, device, location, value)

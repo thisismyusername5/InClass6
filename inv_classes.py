@@ -28,7 +28,15 @@ class User():
     
     def __init__(self, username, lastname, firstname):
         # Insert your code here
-        count += 1
+        # Write the script to instantiate the class.
+        self.username = username
+        self.lastname = lastname
+        self.firstname = firstname
+        self.status = 'active'
+        # Set the public class attributes with the values passed 
+        # Don't forget to update the class variable keeping track of the number
+        # of instances.
+        User.count += 1
     
     def __str__(self):
         return (f"Username: {self.username} ({self.lastname}, {self.firstname}) [{self.status}]")
@@ -67,8 +75,16 @@ class Equipment():
     count = 0
     
     def __init__(self, uuid=None, category=None, device=None, location=None, value = 0.0):
-        # Insert you code here
-        count += 1
+        # Write the script to instantiate the class.  
+        # Set the public class attributes with the values passed
+        self.uuid = uuid
+        self.category = category
+        self.device = device
+        self.location = location
+        self.value = value
+        # Don't forget to update the class variable keeping track of the number
+        # of instances.
+        Equipment.count += 1
         
     def __str__(self):
         return (f"{self.uuid}, {self.category}, {self.device}, {self.location}, {self.value}, {self.status}")
@@ -104,7 +120,15 @@ class Computer(Equipment):
     """
     count = 0
     def __init__(self, uuid, category, device, location, value = 0.0):
-        # insert your code here
+        # Write the script to instantiate the class.  
+        # Since the value passed in are inherited from the Equipment class you
+        # should call the parent __init__ funtion
+        super().__init__(uuid, category, device, location, value)
+        # Set the public os attribute to ""
+        self.os = ""
+        # Don't forget to update the class variable keeping track of the number
+        # of instances.
+        Computer.count += 1
         count += 1
         
         def __str__(self):
