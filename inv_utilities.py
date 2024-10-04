@@ -35,7 +35,7 @@ def load_user_file(infile):
             if line_count > 0:
                 # create a new User instance using the data from the file
                 new_user = User(row[0], row[2], row[1])
-                new_user.status = 'active'
+                new_user.status = row[3]
                 
                 # add the new user instance to the list
                 proc_list.append(new_user)
@@ -81,36 +81,36 @@ def load_equipment_file(infile):
                 # depending on the category, you will create an instance of type Computer or type Equipment
                 if cat == 'PC' or cat == 'Server':
                     # create a new Computer instance using the data from the file
-                    comp = row[0]
-                    comp.os = row[4]
+                    comp = Computer(row[0], row[1], row[2], row[3], row[6])
+                    comp.os = row[3]
                     comp.status = row[6]
                     # add the new Computer instance to the list
-                    new_comp = Equipment(row[0], row[1], row[2], row[3], row[6])
-                    new_comp.status = 'active'
+                    equip_list.append(comp)
 
                 else:
                     # create a new Equipment instance using the data from the file
-                    eq = row[0]
-                    eq.status = 'active'
+                    eq = Equipment(row[0], row[1], row[2], row[6])
+                    eq.status = row[6]
                     # add the new Equipment instance to the list
-                    new_equip = Equipment(row[0], row[1], row[2], row[6])
-                    equip_list.append(new_equip)
+                    equip_list.append(eq)
             line_count += 1
     
-    return(equip_list)
+    return equip_list
 
 def print_user_listing(user_list, show_active_only = False):
     print("\n\n")
-    print("_" * 45)
-    print("     User Listing")
-    print("_" * 45)
-    print("Username     Name (Last, First)          Status")
-    print("_______________________________________________")
+    print("‾" * 48)
+    print("                  User Listing                  ")
+    print("‾" * 48)
+    print("Username Name (Last, First)          Status")
+    print("‾" * 48)
     for u in user_list:
         if not show_active_only or u.status == 'active':
-            print (f"{u.username:<9} {u.lastname:<15} {u.firstname:<15} {u.status:<10}")
-        else:
-            print (f"{u.username:<9} {u.lastname:<15} {u.firstname:<15} {u.status:<10}")
+            fullname = f"{u.lastname}, {u.firstname}"
+            print(f"{u.username:<9} {fullname:<30} {u.status:<10}")
+            #print (f"{u.username:<9} {u.lastname:<15} {u.firstname:<15} {u.status:<10}")
+        #else:
+            #print (f"{u.username:<9} {u.lastname:<15} {u.firstname:<15} {u.status:<10}")
 
     """
     The print_users_listing() displays formatted list of users to the screen
@@ -163,11 +163,27 @@ def print_equipment_listing(equipment_list, show_active_only = False):
     """
     
     # print a header row:
+    print('=' * 47)
+    print('     Equipment Listing')
+    print('=' * 47)
+    print('—' * 75)
+    print('     Computers')
+    print('—' * 75)
+    print('UUID', ' ' * 32, 'Category', '  Device', ' ' * 13, 'OS', ' ' * 22, 'Status')
+    print('—' * 36, '', '—' * 8, ' ', '—' * 18, '', '—' * 25, '', '—' * 6)
     for e in equipment_list:
         if type(e) is Computer:
             if not show_active_only or e.status == 'active':
-                print(f"{e.uuid} {e.category:<9} {e.device:<20} {e.status}")
+                print(f"{e.uuid:<37} {e.category:<10} {e.device:<20} {e.os:<24}  {e.status}")
+    print('—' * 76)
+    print('     Other Equipment')
+    print('—' * 76)
+    print('UUID', ' ' * 32, 'Category', '  Device', ' ' * 13,  'Status')
+    print('—' * 36, '', '—' * 8, ' ', '—' * 18, '', '', '—' * 6)
+    for e in equipment_list:
+        if type(e) is Equipment:
+            if not show_active_only or e.status == 'active':
+                print(f"{e.uuid:<37} {e.category:<10} {e.device:<20} {e.status}")
     # first loop through the list and display the information about computers in the tuples in the list. 
     # Then loop through the list and display the information about other equipment in the tuples in the list
     # if the show_active_only attribute is True, only display the user information that has a status of 'active'
-    pass

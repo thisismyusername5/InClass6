@@ -129,7 +129,6 @@ class Computer(Equipment):
         # Don't forget to update the class variable keeping track of the number
         # of instances.
         Computer.count += 1
-        count += 1
         
         def __str__(self):
             return (f"{self.uuid}, {self.category}, {self.device}, {self.os}, {self.location}, {self.value}, {self.status}")
